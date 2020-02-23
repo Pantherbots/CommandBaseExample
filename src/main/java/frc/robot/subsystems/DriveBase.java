@@ -28,7 +28,7 @@ public class DriveBase extends SubsystemBase {
   }
 
   public void arcadeDrive(double fwd, double rot) {
-    m_drive.arcadeDrive(fwd, rot);
+    m_drive.arcadeDrive(Constants.directionFactor*fwd, rot);
   }
 
 

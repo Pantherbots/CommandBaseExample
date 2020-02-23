@@ -21,6 +21,8 @@ public final class Constants {
     public final static int kVictorPort2 = 2;
     public final static int kVictorPort3 = 3;
     
+    public final static int directionFactor = -1;
+
     public static final class OI {
         public final static int kController = 0;
     }
