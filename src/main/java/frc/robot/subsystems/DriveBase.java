@@ -24,13 +24,15 @@ public class DriveBase extends SubsystemBase {
   public DriveBase() {
     leftMotor2.follow(leftMotor1);
     rightMotor2.follow(rightMotor1);
-
   }
 
   public void arcadeDrive(double fwd, double rot) {
-    m_drive.arcadeDrive(fwd, rot);
+    m_drive.arcadeDrive(Constants.directionFactor*fwd, rot);
   }
 
+  public void stopMotor() {
+    m_drive.stopMotor();
+  }
 
   @Override
   public void periodic() {

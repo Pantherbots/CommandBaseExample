@@ -21,6 +21,10 @@ public final class Constants {
     public final static int kVictorPort2 = 2;
     public final static int kVictorPort3 = 3;
     
+    public final static int directionFactor = -1; // speeds were reversed
+
+    public final static double autoTimeToDrive = 2.0; // drive 2 seconds in autonomous mode
+
     public static final class OI {
         public final static int kController = 0;
     }
