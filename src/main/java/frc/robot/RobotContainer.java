@@ -9,10 +9,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.DriveBase;
+import frc.robot.subsystems.Climber;
 import frc.robot.commands.AutoDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
-
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -22,16 +22,18 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveBase m_driveBase = new DriveBase();
+  private final Climber m_climber = new Climber();
 
   XboxController xController = new XboxController(0);
+  
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-      m_driveBase.setDefaultCommand(
-        new RunCommand(() -> m_driveBase.arcadeDrive(xController.getY(Hand.kLeft),xController.getX(Hand.kRight)), m_driveBase));      
+    m_driveBase.setDefaultCommand(
+      new RunCommand(() -> m_driveBase.arcadeDrive(xController.getY(Hand.kLeft),xController.getX(Hand.kRight)), m_driveBase));      
   }
 
   /**
@@ -49,8 +51,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    // return null;
+    // Command to run in autonomous
     return new AutoDrive(m_driveBase);
   }
 }

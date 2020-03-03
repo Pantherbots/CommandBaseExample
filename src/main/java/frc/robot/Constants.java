@@ -20,10 +20,13 @@ public final class Constants {
     public final static int kVictorPort1 = 1;
     public final static int kVictorPort2 = 2;
     public final static int kVictorPort3 = 3;
-    
+
+    public final static int kMotorPort = 0; // PWM port for climber motor
+
     public final static int directionFactor = -1; // speeds were reversed
 
     public final static double autoTimeToDrive = 2.0; // drive 2 seconds in autonomous mode
+    public final static double turnFactor = 0.75; // attenuation factor for turning speed
 
     public static final class OI {
         public final static int kController = 0;
