@@ -11,8 +11,10 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Climber;
 import frc.robot.commands.AutoDrive;
+import frc.robot.commands.pullUp;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -23,18 +25,23 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveBase m_driveBase = new DriveBase();
   private final Climber m_climber = new Climber();
-
   XboxController xController = new XboxController(0);
-  
+  // Buttons
+  JoystickButton climbUpButton;
+  JoystickButton climbDownButton;
+
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the button bindings
+    climbUpButton = new JoystickButton(xController, XboxController.Button.kA.value);
+    climbDownButton = new JoystickButton(xController, XboxController.Button.kB.value);
+
     configureButtonBindings();
     m_driveBase.setDefaultCommand(
       new RunCommand(() -> m_driveBase.arcadeDrive(xController.getY(Hand.kLeft),xController.getX(Hand.kRight)), m_driveBase));      
-  }
+    }
 
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
@@ -43,6 +50,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    climbUpButton.whenPressed(new pullUp(climbUpButton, m_climber));
   }
 
   /**

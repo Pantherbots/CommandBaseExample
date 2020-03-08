@@ -18,6 +18,18 @@ public class Climber extends SubsystemBase {
     m_elevMotor = new Spark(Constants.kMotorPort);
   }
 
+  public void raise() {
+    m_elevMotor.set(0.5);
+  }
+
+  public void lower() {
+    m_elevMotor.set(-0.5);
+  }
+
+  public void stopMotor() {
+    m_elevMotor.set(0.0);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
