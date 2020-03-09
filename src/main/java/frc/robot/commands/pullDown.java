@@ -4,24 +4,22 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 package frc.robot.commands;
 import frc.robot.subsystems.Climber;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 /**
  * An example command that uses an example subsystem.
  */
-public class pullUp extends CommandBase {
+public class pullDown extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Climber m_subsystem;
-  //private final Timer m_timer = new Timer();
   /**
    *
    * AutoDrive command is used to move the robot in autonomous mode
    * 
    * @param subsystem The subsystem used by this command.
    */
-  public pullUp(Climber subsystem) {
+  public pullDown(Climber subsystem) {
     m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
@@ -35,7 +33,7 @@ public class pullUp extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_subsystem.raise(); // drive forwards half speed
+    m_subsystem.lower(); // drive forwards half speed
   }
 
   // Called once the command ends or is interrupted.

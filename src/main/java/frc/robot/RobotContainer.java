@@ -7,11 +7,13 @@
 
 package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.subsystems.DriveBase;
 import frc.robot.subsystems.Climber;
 import frc.robot.commands.AutoDrive;
 import frc.robot.commands.pullUp;
+import frc.robot.commands.pullDown;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -27,16 +29,15 @@ public class RobotContainer {
   private final Climber m_climber = new Climber();
   XboxController xController = new XboxController(0);
   // Buttons
-  JoystickButton climbUpButton;
-  JoystickButton climbDownButton;
+  JoystickButton kA,kB;
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     // Configure the button bindings
-    climbUpButton = new JoystickButton(xController, XboxController.Button.kA.value);
-    climbDownButton = new JoystickButton(xController, XboxController.Button.kB.value);
+    kA = new JoystickButton(xController, XboxController.Button.kA.value);
+    kB = new JoystickButton(xController, XboxController.Button.kB.value);
 
     configureButtonBindings();
     m_driveBase.setDefaultCommand(
@@ -50,7 +51,8 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    climbUpButton.whenPressed(new pullUp(climbUpButton, m_climber));
+    kA.whenHeld(new pullUp(m_climber));
+    kB.whenHeld(new pullDown(m_climber));
   }
 
   /**
